@@ -1,0 +1,71 @@
+﻿<Window
+    x:Class="WalloneInstaller.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WalloneInstaller"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:WalloneInstaller.ViewModels"
+    Title="Wallone.Installer"
+    Width="1200"
+    Height="700"
+    d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowVM,
+                                     IsDesignTimeCreatable=True}"
+    Icon="/WalloneInstaller;component/Images/icon.jpg"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Normal"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid Background="#121212">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0"
+            Height="32"
+            Background="#202020"
+            Cursor="Hand"
+            MouseDown="Window_OnMouseDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <WrapPanel Margin="16,0,0,0" VerticalAlignment="Center">
+                <Image
+                    Width="16"
+                    Height="16"
+                    Source="/WalloneInstaller;component/Images/icon.jpg"
+                    Stretch="Fill" />
+                <TextBlock
+                    Margin="8,0,0,0"
+                    FontSize="12"
+                    FontWeight="Normal"
+                    Foreground="White"
+                    Style="{StaticResource TextBlock}"
+                    Text="Wallone Installer" />
+            </WrapPanel>
+            <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
+                <Button
+                    Width="46"
+                    Height="32"
+                    Content="&#xE921;"
+                    Click="ButtonBase_OnClick"
+                    Style="{StaticResource ButtonToolbar}" />
+                <Button
+                    Width="46"
+                    Content="&#xE922;"
+                    Style="{StaticResource ButtonToolbar}" />
+                <Button
+                    Width="46"
+                    Command="{Binding CloseApplicationCommand}"
+                    Content="&#xE8BB;"
+                    Style="{StaticResource ButtonToolbarClose}" />
+            </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ContentPresenter Content="{Binding SelectedView}" DataContext="{Binding SelectedView}" />
+        </Grid>
+    </Grid>
+</Window>

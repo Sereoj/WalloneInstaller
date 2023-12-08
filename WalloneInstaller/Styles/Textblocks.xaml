@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  color: white;  -->
+    <!--  font-size: 22px;  -->
+    <!--  font-family: Fredoka;  -->
+    <!--  font-weight: 400;  -->
+
+    <Style x:Key="TextBlockLogo" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="/Fonts/#Fredoka" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+    </Style>
+
+    <Style x:Key="TextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="/Fonts/SegoeUIVF.ttf#Segoe UI Variable Text" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+    </Style>
+</ResourceDictionary>

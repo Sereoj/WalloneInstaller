@@ -1,0 +1,104 @@
+﻿<UserControl
+    x:Class="WalloneInstaller.Views.Installer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WalloneInstaller.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:WalloneInstaller.ViewModels"
+    Width="1200"
+    Height="667"
+    d:DataContext="{d:DesignInstance Type=viewModels:InstallerVM,
+                                     IsDesignTimeCreatable=True}"
+    mc:Ignorable="d">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="492" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="Left">
+            <Image
+                x:Name="image1"
+                Source="/WalloneInstaller;component/Images/WelcomeBoard2.jpg"
+                Stretch="Fill" />
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid Margin="72,162,0,0">
+                <WrapPanel
+                    Width="140"
+                    Height="43"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Cursor="Hand">
+                    <Image
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Source="/WalloneInstaller;component/Images/IconFull.png" />
+                    <StackPanel Margin="8,0,0,0">
+                        <TextBlock
+                            Style="{StaticResource TextBlockLogo}"
+                            Text="Wallone"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Light"
+                            Style="{StaticResource TextBlockLogo}"
+                            Text="#Nice Day"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </WrapPanel>
+                <StackPanel Margin="0,59,0,0">
+                    <TextBlock
+                        Width="376"
+                        HorizontalAlignment="Left"
+                        FontSize="40"
+                        FontWeight="SemiBold"
+                        Style="{StaticResource TextBlock}"
+                        Text="Установка займет немного времени. Подождите..."
+                        TextWrapping="Wrap" />
+                    <StackPanel>
+                        <ProgressBar
+                            Width="287"
+                            Height="6"
+                            Margin="0,32,0,0"
+                            HorizontalAlignment="Left"
+                            Style="{StaticResource ProcessBarStyle}"
+                            Value="{Binding ValueProcess, FallbackValue=0}" />
+                        <TextBlock
+                            Margin="0,8,0,0"
+                            Style="{StaticResource TextBlock}"
+                            Text="{Binding Text}" />
+                    </StackPanel>
+
+                    <Button
+                        Width="248"
+                        Height="48"
+                        Margin="0,32,0,0"
+                        HorizontalAlignment="Left"
+                        Command="{Binding ContinueButtonCommand}"
+                        Content="Продолжить"
+                        IsEnabled="False"
+                        Style="{StaticResource ButtonNext}" />
+                    <TextBlock
+                        Width="324"
+                        Margin="0,141"
+                        HorizontalAlignment="Left"
+                        Opacity="0.6"
+                        Style="{StaticResource TextBlock}"
+                        Text="Нажимая кнопку Установить приложение, вы соглашаетесь с Правилами пользования"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Image
+            x:Name="appwizard"
+            Grid.Column="1"
+            Height="92"
+            Margin="74,0,40,30"
+            VerticalAlignment="Bottom"
+            Cursor="Hand"
+            MouseDown="Appwizard_OnMouseDown"
+            Source="/Images/appwizard.png"
+            Stretch="Fill" />
+    </Grid>
+</UserControl>
