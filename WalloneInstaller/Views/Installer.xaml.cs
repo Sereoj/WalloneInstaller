@@ -26,7 +26,6 @@ namespace WalloneInstaller.Views
             InitializeComponent();
         }
 
-
         private void Appwizard_OnMouseDown(object sender, MouseEventArgs e)
         {
             Process.Start("https://extlinka.ru/r/32226/");

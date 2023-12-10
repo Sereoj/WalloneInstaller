@@ -1,9 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using WalloneInstaller.Commands;
+using WalloneInstaller.Services;
 using WalloneInstaller.ViewModels.Base;
 
 namespace WalloneInstaller.ViewModels
@@ -20,22 +23,41 @@ namespace WalloneInstaller.ViewModels
         {
             _mainWindowVm = mainWindowVm;
             ValueProcess = 0;
+            IsEnabled = false;
 
             Thread myThread = new Thread(() =>
             {
-                for (int i = 0; i < 100; i++)
-                {
-                    ValueProcess++;
-                    Thread.Sleep(100);
-                }
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
-                Text = "Идет установка...";
-                Thread.Sleep(2000);
-                Text = "Установка завершена!";
+                Text = "Скачивание...";
+                try
+                {
+                    using var wb = new WebClient();
+                    wb.DownloadFile(new Uri("http://dev.w2me.ru/app/wallone/download"), UriService.GetPath() + "//app.rar");
+                    wb.DownloadProgressChanged += Wb_DownloadProgressChanged;
+                    wb.DownloadFileCompleted += Wb_DownloadFileCompleted;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             });
             myThread.Start();
 
         }
+
+        private void Wb_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            Text = "Идет установка...";
+            IsEnabled = true;
+        }
+
+        private void Wb_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            ValueProcess = e.ProgressPercentage;
+        }
+
         private string text;
         public string Text
         {
@@ -53,10 +75,19 @@ namespace WalloneInstaller.ViewModels
             set
             {
                 Set(ref valueProcess, value);
-                Text = $"Скачано: " + valueProcess + "%";
+                Text = "Скачано: " + valueProcess + "%";
             }
         }
 
+        private bool isEnabled;
+        public bool IsEnabled
+        {
+            get => isEnabled;
+            set
+            {
+                Set(ref isEnabled, value);
+            }
+        }
         private ICommand _ContinueButtonCommand;
 
         public ICommand ContinueButtonCommand => _ContinueButtonCommand ??=

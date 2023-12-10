@@ -77,7 +77,7 @@
                         HorizontalAlignment="Left"
                         Command="{Binding ContinueButtonCommand}"
                         Content="Продолжить"
-                        IsEnabled="False"
+                        IsEnabled="{Binding IsEnabled}"
                         Style="{StaticResource ButtonNext}" />
                     <TextBlock
                         Width="324"

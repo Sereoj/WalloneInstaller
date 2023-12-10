@@ -11,7 +11,6 @@ namespace WalloneInstaller.ViewModels
     {
         public Wellcome Wellcome { get; set; }
         public SelectDirectory SelectDirectory { get; set; }
-        public Installer Installer { get; set; }
         public EmailSender EmailSender { get; set; }
         public Partners Partners { get; set; }
 
@@ -30,12 +29,6 @@ namespace WalloneInstaller.ViewModels
         }
 
         public SelectDirectoryVM SelectDirectoryVM
-        {
-            get;
-            set;
-        }
-
-        public InstallerVM InstallerVM
         {
             get;
             set;
@@ -60,9 +53,6 @@ namespace WalloneInstaller.ViewModels
 
             SelectDirectory = new SelectDirectory();
             SelectDirectoryVM = new SelectDirectoryVM(this);
-
-            Installer = new Installer();
-            InstallerVM = new InstallerVM(this);
 
             EmailSender = new EmailSender();
             EmailSenserVM = new EmailSenserVM(this);
@@ -94,10 +84,6 @@ namespace WalloneInstaller.ViewModels
                 case "select":
                     SelectedView = SelectDirectory;
                     SelectedView.DataContext = SelectDirectoryVM;
-                    break;
-                case "installer":
-                    SelectedView = Installer;
-                    SelectedView.DataContext = InstallerVM;
                     break;
                 case "email":
                     SelectedView = EmailSender;

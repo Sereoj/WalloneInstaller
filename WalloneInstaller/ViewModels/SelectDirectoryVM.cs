@@ -1,16 +1,21 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using WalloneInstaller.Commands;
+using WalloneInstaller.Services;
 using WalloneInstaller.ViewModels.Base;
+using WalloneInstaller.Views;
 
 namespace WalloneInstaller.ViewModels
 {
     public class SelectDirectoryVM : ViewModel
     {
         private readonly MainWindowVM _mainWindowVm;
+
+        private string path = @"AbsoluteGroup\Wallone";
         private string _text;
 
         public string Text
@@ -25,7 +30,7 @@ namespace WalloneInstaller.ViewModels
         public SelectDirectoryVM(MainWindowVM mainWindowVm)
         {
             _mainWindowVm = mainWindowVm;
-            Text = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), path);
         }
 
         private ICommand _OpenDialogButtonCommand;
@@ -44,7 +49,7 @@ namespace WalloneInstaller.ViewModels
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                Text = dialog.SelectedPath;
+                Text = Path.Combine(dialog.SelectedPath, path);
             }
         }
 
@@ -60,7 +65,18 @@ namespace WalloneInstaller.ViewModels
 
         private void OnContinueButtonCommandExecuted(object p)
         {
-            _mainWindowVm.OnPageButtonCommandExecuted("installer");
+            try
+            {
+                UriService.SetPath(Text);
+                Directory.CreateDirectory(Text);
+
+                _mainWindowVm.SelectedView = new Installer();
+                _mainWindowVm.SelectedView.DataContext = new InstallerVM(_mainWindowVm);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine("Недостаточно прав");
+            }
         }
     }
 }
