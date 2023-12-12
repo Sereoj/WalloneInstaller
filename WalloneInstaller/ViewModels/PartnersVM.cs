@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using WalloneInstaller.Commands;
+using WalloneInstaller.Services;
 using WalloneInstaller.ViewModels.Base;
 
 namespace WalloneInstaller.ViewModels
@@ -15,10 +18,47 @@ namespace WalloneInstaller.ViewModels
 
         public PartnersVM()
         {
-
+            Articles.Add(new ArticleVM()
+            {
+                Name = "Test",
+                Category = "partner.category",
+            });
+            Articles.Add(new ArticleVM()
+            {
+                Name = "Test",
+                Category = "partner.category",
+            });
+            Articles.Add(new ArticleVM()
+            {
+                Name = "Test",
+                Category = "partner.category",
+            });
+            Articles.Add(new ArticleVM()
+            {
+                Name = "Test",
+                Category = "partner.category",
+            });
         }
+
+        public ObservableCollection<ArticleVM> Articles
+        {
+            get;
+            set;
+        } = new ObservableCollection<ArticleVM>();
+
         public PartnersVM(MainWindowVM mainWindowVm)
         {
+            var partners = RequestRouter.getPartners();
+            foreach (var partner in partners)
+            {
+                Articles.Add(new ArticleVM()
+                {
+                    Image = new BitmapImage(new Uri(partner.icon)),
+                    Name = partner.name,
+                    Category = partner.category,
+                    Url = partner.download
+                });
+            }
             _mainWindowVm = mainWindowVm;
 
         }
@@ -37,6 +77,7 @@ namespace WalloneInstaller.ViewModels
         private void OnContinueButtonCommandExecuted(object p)
         {
             Process.Start("https://wallone.ru/?target=app&version="+ Application.ProductVersion +"&times=" + DateTime.Now.Ticks+"&language=" + Application.CurrentCulture.Name);
+            Process.Start(Path.Combine(UriService.GetPath(), "Wallone.UI.exe"));
             App.Current.Shutdown(); 
         }
 

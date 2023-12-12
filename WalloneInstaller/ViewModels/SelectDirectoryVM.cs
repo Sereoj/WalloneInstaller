@@ -70,6 +70,13 @@ namespace WalloneInstaller.ViewModels
                 UriService.SetPath(Text);
                 Directory.CreateDirectory(Text);
 
+                var directoryPath =  Path.Combine(UriService.GetPath(), "files");
+
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
                 _mainWindowVm.SelectedView = new Installer();
                 _mainWindowVm.SelectedView.DataContext = new InstallerVM(_mainWindowVm);
             }

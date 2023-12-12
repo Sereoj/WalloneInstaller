@@ -25,32 +25,34 @@
                 Margin="0,16,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Source="/Images/ya_logo.png" />
+                Source="{Binding Image}" />
             <TextBlock
                 Margin="0,4,0,0"
                 HorizontalAlignment="Center"
                 FontSize="18"
                 Style="{StaticResource TextBlock}"
-                Text="Yandex Browser" />
+                Text="{Binding Name, FallbackValue=Yandex Browser}" />
             <TextBlock
                 HorizontalAlignment="Center"
                 FontSize="14"
                 Opacity="0.5"
                 Style="{StaticResource TextBlock}"
-                Text="Браузер" />
+                Text="{Binding Category, FallbackValue=Браузер}" />
             <Grid Margin="0,8,0,0">
                 <Button
                     x:Name="ButtonDownload"
                     Background="{x:Null}"
+                    Command="{Binding InstallButtonCommand}"
                     Content="Установить"
-                    Style="{StaticResource ButtonDownloadPartner}" />
+                    Style="{StaticResource ButtonDownloadPartner}"
+                    Visibility="{Binding ButtonVisibility}" />
                 <ProgressBar
                     x:Name="ProgressBar"
                     Width="131"
                     Height="6"
                     Style="{StaticResource ProcessBarStyle}"
-                    Visibility="Hidden"
-                    Value="40" />
+                    Visibility="{Binding ProcessVisibility}"
+                    Value="{Binding ValueProcess}" />
                 <TextBlock
                     x:Name="TextBlockDone"
                     HorizontalAlignment="Center"
@@ -59,7 +61,7 @@
                     Foreground="#3BE810"
                     Style="{StaticResource TextBlock}"
                     Text="Установлено"
-                    Visibility="Hidden" />
+                    Visibility="{Binding TextDoneVisibility}" />
             </Grid>
         </StackPanel>
     </Border>

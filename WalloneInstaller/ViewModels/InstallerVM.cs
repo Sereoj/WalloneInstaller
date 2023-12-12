@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Input;
+using Aspose.Zip;
 using WalloneInstaller.Commands;
 using WalloneInstaller.Services;
 using WalloneInstaller.ViewModels.Base;
@@ -14,6 +14,7 @@ namespace WalloneInstaller.ViewModels
     public class InstallerVM : ViewModel
     {
         private readonly MainWindowVM _mainWindowVm;
+        private string path = UriService.GetPath() + @"\app.rar";
 
         public InstallerVM()
         {
@@ -25,7 +26,7 @@ namespace WalloneInstaller.ViewModels
             ValueProcess = 0;
             IsEnabled = false;
 
-            Thread myThread = new Thread(() =>
+            Thread thread =  new Thread(() =>
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
@@ -33,7 +34,8 @@ namespace WalloneInstaller.ViewModels
                 try
                 {
                     using var wb = new WebClient();
-                    wb.DownloadFile(new Uri("http://dev.w2me.ru/app/wallone/download"), UriService.GetPath() + "//app.rar");
+                    
+                    _= wb.DownloadFileTaskAsync(new Uri("https://dev.w2me.ru/app/wallone/download"), path);
                     wb.DownloadProgressChanged += Wb_DownloadProgressChanged;
                     wb.DownloadFileCompleted += Wb_DownloadFileCompleted;
                 }
@@ -43,14 +45,27 @@ namespace WalloneInstaller.ViewModels
                     throw;
                 }
             });
-            myThread.Start();
-
+            thread.Start();
         }
 
         private void Wb_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            Text = "Идет установка...";
-            IsEnabled = true;
+            Text = "Идет распаковка архива...";
+
+            if (File.Exists(path))
+            {
+                Console.WriteLine(path);
+                using (FileStream zipFile = File.Open(path, FileMode.Open))
+                {
+                    using (var archive = new Archive(zipFile))
+                    {
+                        archive.ExtractToDirectory(UriService.GetPath());
+                    }
+                }
+                if (File.Exists(UriService.GetPath() + "/app.zip")) File.Delete(UriService.GetPath() + "/app.zip");
+                Text = "Готово! Нажмите продолжить";
+                IsEnabled = true;
+            }
         }
 
         private void Wb_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
