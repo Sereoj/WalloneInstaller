@@ -14,7 +14,7 @@ namespace WalloneInstaller.ViewModels
     public class InstallerVM : ViewModel
     {
         private readonly MainWindowVM _mainWindowVm;
-        private string path = UriService.GetPath() + @"\app.rar";
+        private string path = UriService.GetPath() + @"\app.zip";
 
         public InstallerVM()
         {
@@ -62,7 +62,7 @@ namespace WalloneInstaller.ViewModels
                         archive.ExtractToDirectory(UriService.GetPath());
                     }
                 }
-                if (File.Exists(UriService.GetPath() + "/app.zip")) File.Delete(UriService.GetPath() + "/app.zip");
+                if (File.Exists(path)) File.Delete(path);
                 Text = "Готово! Нажмите продолжить";
                 IsEnabled = true;
             }

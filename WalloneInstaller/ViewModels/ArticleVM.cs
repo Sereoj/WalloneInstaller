@@ -120,8 +120,16 @@ namespace WalloneInstaller.ViewModels
 
         private void WbOnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
+            var directoryPath = Path.Combine(UriService.GetPath(), "files");
+            var file = Path.Combine(directoryPath, Filename + ".exe");
+
             ProcessVisibility = Visibility.Hidden;
             TextDoneVisibility = Visibility.Visible;
+
+            if (File.Exists(file))
+            {
+                Process.Start($"{file}");
+            }
         }
 
         private void WbOnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
