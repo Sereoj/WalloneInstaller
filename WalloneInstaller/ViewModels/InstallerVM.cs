@@ -55,16 +55,24 @@ namespace WalloneInstaller.ViewModels
             if (File.Exists(path))
             {
                 Console.WriteLine(path);
-                using (FileStream zipFile = File.Open(path, FileMode.Open))
+                try
                 {
-                    using (var archive = new Archive(zipFile))
+                    using (FileStream zipFile = File.Open(path, FileMode.Open))
                     {
-                        archive.ExtractToDirectory(UriService.GetPath());
+                        using (var archive = new Archive(zipFile))
+                        {
+                            archive.ExtractToDirectory(UriService.GetPath());
+                        }
                     }
+                    if (File.Exists(path)) File.Delete(path);
+                    Text = "Готово! Нажмите продолжить";
+                    IsEnabled = true;
                 }
-                if (File.Exists(path)) File.Delete(path);
-                Text = "Готово! Нажмите продолжить";
-                IsEnabled = true;
+                catch (Exception ex)
+                {
+                    Text = "Ошибка: " + ex.Message;
+                    IsEnabled = true;
+                }
             }
         }
 

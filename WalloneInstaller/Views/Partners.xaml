@@ -11,6 +11,28 @@
     d:DataContext="{d:DesignInstance Type=viewModels:PartnersVM,
                                      IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="_ListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border
+                            Name="_Border"
+                            Padding="2"
+                            CornerRadius="4"
+                            SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="#252525" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -37,16 +59,19 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Background="{x:Null}"
+                Command="{Binding InstallAllButtonCommand}"
                 Content="Установить все"
                 Style="{StaticResource ButtonDownloadPartner}" />
         </Grid>
         <WrapPanel Grid.Row="1">
             <ListView
-                Width="1200"
+                Margin="32,20"
                 HorizontalContentAlignment="Left"
                 VerticalContentAlignment="Top"
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
+                FocusVisualStyle="{x:Null}"
+                ItemContainerStyle="{StaticResource _ListBoxItemStyle}"
                 ItemsSource="{Binding Articles}"
                 SelectionMode="Single">
                 <ListView.ItemsPanel>
@@ -62,6 +87,12 @@
             </ListView>
         </WrapPanel>
         <Grid Grid.Row="2">
+            <TextBlock
+                Margin="32,0"
+                FontSize="20"
+                Opacity="0.8"
+                Style="{StaticResource TextBlock}"
+                Text="{Binding Text}" />
             <Button
                 Width="223"
                 Height="48"

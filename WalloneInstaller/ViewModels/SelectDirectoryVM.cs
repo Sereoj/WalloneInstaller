@@ -82,6 +82,11 @@ namespace WalloneInstaller.ViewModels
             }
             catch (Exception e)
             {
+                MessageBox.Show("Недостаточно прав для установки приложения. Запустите приложение от имени администратора", 
+                    "Wallone Installer",
+                    MessageBoxButtons.OK, 
+                    icon: MessageBoxIcon.Warning);
+
                 Trace.WriteLine("Недостаточно прав");
             }
         }

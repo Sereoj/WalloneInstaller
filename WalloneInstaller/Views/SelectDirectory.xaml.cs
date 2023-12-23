@@ -30,5 +30,10 @@ namespace WalloneInstaller.Views
         {
             Process.Start("https://extlinka.ru/r/32226/");
         }
+
+        private void LogoWallone_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://wallone.ru/?app=installer");
+        }
     }
 }

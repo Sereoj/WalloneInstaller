@@ -18,6 +18,8 @@ namespace WalloneInstaller.ViewModels
 
         public string Filename { get; set; } = Path.GetRandomFileName();
         public string Url { get; set; }
+
+        public bool IsInstalled { get; set; } = false;
         public ArticleVM()
         {
             ProcessVisibility = Visibility.Hidden;
@@ -92,30 +94,34 @@ namespace WalloneInstaller.ViewModels
             return true;
         }
 
-        private void OnInstallButtonCommandExecuted(object p)
+        public void OnInstallButtonCommandExecuted(object p)
         {
-            Thread thread = new Thread(() =>
+            if(!IsInstalled)
             {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-                try
+                Thread thread = new Thread(() =>
                 {
-                    var directoryPath = Path.Combine(UriService.GetPath(), "files");
-                    using var wb = new WebClient();
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
-                    _ = wb.DownloadFileTaskAsync(new Uri(Url), Path.Combine(directoryPath, Filename + ".exe"));
-                    wb.DownloadProgressChanged += WbOnDownloadProgressChanged;
-                    wb.DownloadFileCompleted += WbOnDownloadFileCompleted;
-                    ButtonVisibility = Visibility.Hidden;
-                    ProcessVisibility = Visibility.Visible;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-            });
-            thread.Start();
+                    try
+                    {
+                        var directoryPath = Path.Combine(UriService.GetPath(), "files");
+                        using var wb = new WebClient();
+
+                        _ = wb.DownloadFileTaskAsync(new Uri(Url), Path.Combine(directoryPath, Filename + ".exe"));
+                        wb.DownloadProgressChanged += WbOnDownloadProgressChanged;
+                        wb.DownloadFileCompleted += WbOnDownloadFileCompleted;
+                        ButtonVisibility = Visibility.Hidden;
+                        ProcessVisibility = Visibility.Visible;
+                        IsInstalled = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
+                });
+                thread.Start();
+            }
         }
 
         private void WbOnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
@@ -126,9 +132,16 @@ namespace WalloneInstaller.ViewModels
             ProcessVisibility = Visibility.Hidden;
             TextDoneVisibility = Visibility.Visible;
 
-            if (File.Exists(file))
+            try
             {
-                Process.Start($"{file}");
+                if (File.Exists(file))
+                {
+                    Process.Start($"{file}");
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

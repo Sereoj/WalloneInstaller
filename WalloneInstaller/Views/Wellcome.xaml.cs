@@ -30,5 +30,20 @@ namespace WalloneInstaller.Views
         {
             Process.Start("https://wallone.ru/policy");
         }
+
+        private void LinkPolicy_MouseEnter(object sender, MouseEventArgs e)
+        {
+            LinkPolicy.Opacity = 1;
+        }
+
+        private void LinkPolicy_MouseLeave(object sender, MouseEventArgs e)
+        {
+            LinkPolicy.Opacity = 0.8;
+        }
+
+        private void LogoWallone_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://wallone.ru/?app=installer");
+        }
     }
 }

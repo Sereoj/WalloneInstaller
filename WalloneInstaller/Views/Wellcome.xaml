@@ -25,11 +25,13 @@
         <Grid Grid.Column="1">
             <Grid Margin="72,162,0,0">
                 <WrapPanel
+                    x:Name="LogoWallone"
                     Width="140"
                     Height="43"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Cursor="Hand">
+                    Cursor="Hand"
+                    MouseDown="LogoWallone_MouseDown">
                     <Image
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
@@ -69,12 +71,22 @@
                         Margin="0,0,0,32"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom"
-                        Cursor="Hand"
-                        MouseDown="Policy_OnMouseDown"
                         Opacity="0.6"
                         Style="{StaticResource TextBlock}"
-                        Text="Нажимая кнопку Установить приложение, вы соглашаетесь с Правилами пользования"
+                        Text="Нажимая кнопку «Установить приложение», вы соглашаетесь с "
                         TextWrapping="Wrap" />
+                    <TextBlock
+                        x:Name="LinkPolicy"
+                        Margin="88,0,0,32"
+                        VerticalAlignment="Bottom"
+                        Cursor="Hand"
+                        Foreground="#007AFF"
+                        MouseDown="Policy_OnMouseDown"
+                        MouseEnter="LinkPolicy_MouseEnter"
+                        MouseLeave="LinkPolicy_MouseLeave"
+                        Opacity="0.8"
+                        Style="{StaticResource TextBlock}"
+                        Text="Правилами пользования" />
                 </Grid>
 
             </Grid>

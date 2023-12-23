@@ -40,6 +40,17 @@ namespace WalloneInstaller.ViewModels
             });
         }
 
+        private string text;
+        public string Text
+        {
+            get => text;
+            set
+            {
+                Set(ref text, value);
+
+            }
+        }
+
         public ObservableCollection<ArticleVM> Articles
         {
             get;
@@ -60,6 +71,29 @@ namespace WalloneInstaller.ViewModels
                 });
             }
             _mainWindowVm = mainWindowVm;
+
+        }
+
+        private ICommand _InstallAllButtonCommand;
+
+        public ICommand InstallAllButtonCommand => _InstallAllButtonCommand ??=
+            new RelayCommand(OnInstallAllButtonCommandExecuted, CanInstallAllButtonCommandExecute);
+
+        private bool CanInstallAllButtonCommandExecute(object p)
+        {
+            return true;
+        }
+
+        private void OnInstallAllButtonCommandExecuted(object p)
+        {
+            foreach (var item in Articles)
+            {
+                item.OnInstallButtonCommandExecuted(true);
+                if(item.IsInstalled)
+                {
+                    Text = $"Приложнение {item.Name} уже установлено";
+                }
+            }
 
         }
 
