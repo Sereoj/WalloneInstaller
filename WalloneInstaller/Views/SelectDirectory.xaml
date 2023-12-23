@@ -21,6 +21,12 @@
                 x:Name="image1"
                 Source="/WalloneInstaller;component/Images/WelcomeBoard1.jpg"
                 Stretch="Fill" />
+            <TextBlock
+                Margin="32,32"
+                VerticalAlignment="Bottom"
+                FontWeight="Regular"
+                Style="{StaticResource TextBlock}"
+                Text="Обои: Mojave Desert." />
         </Grid>
         <Grid Grid.Column="1">
             <Grid Margin="72,162,0,0">
