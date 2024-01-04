@@ -64,7 +64,7 @@ namespace WalloneInstaller.ViewModels
                             archive.ExtractToDirectory(UriService.GetPath());
                         }
                     }
-                    if (File.Exists(path)) File.Delete(path);
+
                     Text = "Готово! Нажмите продолжить";
                     IsEnabled = true;
                 }
@@ -73,6 +73,7 @@ namespace WalloneInstaller.ViewModels
                     Text = "Ошибка: " + ex.Message;
                     IsEnabled = true;
                 }
+                File.Delete(path);
             }
         }
 
