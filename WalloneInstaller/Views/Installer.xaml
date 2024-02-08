@@ -87,26 +87,19 @@
                         Content="Продолжить"
                         IsEnabled="{Binding IsEnabled}"
                         Style="{StaticResource ButtonNext}" />
-                    <TextBlock
-                        Width="324"
-                        Margin="0,141"
-                        HorizontalAlignment="Left"
-                        Opacity="0.6"
-                        Style="{StaticResource TextBlock}"
-                        Text="Нажимая кнопку Установить приложение, вы соглашаетесь с Правилами пользования"
-                        TextWrapping="Wrap" />
+                    <Image
+                        x:Name="appwizard"
+                        Grid.Column="1"
+                        Height="92"
+                        Margin="0,20,40,0"
+                        VerticalAlignment="Bottom"
+                        Cursor="Hand"
+                        MouseDown="Appwizard_OnMouseDown"
+                        Source="/Images/appwizard.png"
+                        Stretch="Fill" />
+                    <local:Footer Margin="0,5,0,32" />
                 </StackPanel>
             </Grid>
         </Grid>
-        <Image
-            x:Name="appwizard"
-            Grid.Column="1"
-            Height="92"
-            Margin="74,0,40,30"
-            VerticalAlignment="Bottom"
-            Cursor="Hand"
-            MouseDown="Appwizard_OnMouseDown"
-            Source="/Images/appwizard.png"
-            Stretch="Fill" />
     </Grid>
 </UserControl>

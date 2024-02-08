@@ -51,6 +51,7 @@
                 FontWeight="DemiBold"
                 Style="{StaticResource TextBlock}"
                 Text="Партнерский софт" />
+
             <Button
                 Grid.Column="1"
                 Width="160"

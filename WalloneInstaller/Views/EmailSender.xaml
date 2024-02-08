@@ -96,20 +96,7 @@
                         Style="{StaticResource TextBlock}"
                         Text="Следите за обновлениями приложения Wallone, станьте участником бета-тестирования."
                         TextWrapping="Wrap" />
-                    <Grid Margin="0,20,0,0" Opacity="0.6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            Style="{StaticResource TextBlock}"
-                            Text="Разработчик: Sereoj" />
-                        <TextBlock
-                            Grid.Column="1"
-                            Style="{StaticResource TextBlock}"
-                            Text="Сайт: wallone.ru" />
-                    </Grid>
+                    <local:Footer Margin="0,45,0,0" />
                 </StackPanel>
 
             </Grid>
