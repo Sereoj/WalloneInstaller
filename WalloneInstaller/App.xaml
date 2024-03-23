@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/Styles/Textblocks.xaml" />
                 <ResourceDictionary Source="/Styles/Textboxs.xaml" />
                 <ResourceDictionary Source="/Styles/Buttons.xaml" />
+                <ResourceDictionary Source="/Styles/Checkboxs.xaml" />
                 <ResourceDictionary Source="/Styles/ProcessBars.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

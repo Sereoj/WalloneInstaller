@@ -26,7 +26,7 @@ namespace WalloneInstaller.ViewModels
             ValueProcess = 0;
             IsEnabled = false;
 
-            Thread thread =  new Thread(() =>
+            Thread thread = new Thread(() =>
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
@@ -112,6 +112,18 @@ namespace WalloneInstaller.ViewModels
                 Set(ref isEnabled, value);
             }
         }
+
+        private bool isChecked = true;
+        public bool IsChecked
+        {
+            get => isChecked;
+            set
+            {
+                Set(ref isChecked, value);
+                Console.WriteLine(value);
+            }
+        }
+
         private ICommand _ContinueButtonCommand;
 
         public ICommand ContinueButtonCommand => _ContinueButtonCommand ??=
@@ -125,6 +137,11 @@ namespace WalloneInstaller.ViewModels
         private void OnContinueButtonCommandExecuted(object p)
         {
             _mainWindowVm.OnPageButtonCommandExecuted("email");
+            Console.WriteLine(IsChecked);
+            if(IsChecked)
+            {
+                _mainWindowVm.PartnersVM.OnInstallAllButtonCommandExecuted(IsChecked);
+            }
         }
 
     }

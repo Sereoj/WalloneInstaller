@@ -19,14 +19,19 @@
         <Grid x:Name="Left">
             <Image
                 x:Name="image1"
-                Source="/WalloneInstaller;component/Images/WelcomeBoard2.jpg"
-                Stretch="Fill" />
+                Source="/WalloneInstaller;component/Images/Image.png"
+                Stretch="UniformToFill" />
+            <local:SocialsFooter
+                Width="40"
+                Margin="30,0,0,30"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom" />
             <TextBlock
-                Margin="32,32"
+                Margin="80,0,0,30"
                 VerticalAlignment="Bottom"
                 FontWeight="Regular"
                 Style="{StaticResource TextBlock}"
-                Text="Обои: Mojave Desert." />
+                Text="Обои: 木吉子 Furina" />
         </Grid>
         <Grid Grid.Column="1">
             <Grid Margin="72,162,0,0">
@@ -76,8 +81,15 @@
                             Margin="0,8,0,0"
                             Style="{StaticResource TextBlock}"
                             Text="{Binding Text}" />
+                        <CheckBox
+                            Width="260"
+                            Margin="0,8,0,0"
+                            HorizontalAlignment="Left"
+                            Content="Установить дополнительный набор"
+                            Foreground="White"
+                            IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                            Style="{StaticResource CheckBoxStyle}" />
                     </StackPanel>
-
                     <Button
                         Width="248"
                         Height="48"
@@ -87,18 +99,8 @@
                         Content="Продолжить"
                         IsEnabled="{Binding IsEnabled}"
                         Style="{StaticResource ButtonNext}" />
-                    <Image
-                        x:Name="appwizard"
-                        Grid.Column="1"
-                        Height="92"
-                        Margin="0,20,40,0"
-                        VerticalAlignment="Bottom"
-                        Cursor="Hand"
-                        MouseDown="Appwizard_OnMouseDown"
-                        Source="/Images/appwizard.png"
-                        Stretch="Fill" />
-                    <local:Footer Margin="0,5,0,32" />
                 </StackPanel>
+                <local:Footer Margin="0,0,0,20" />
             </Grid>
         </Grid>
     </Grid>

@@ -84,7 +84,7 @@ namespace WalloneInstaller.ViewModels
             return true;
         }
 
-        private void OnInstallAllButtonCommandExecuted(object p)
+        public void OnInstallAllButtonCommandExecuted(object p)
         {
             foreach (var item in Articles)
             {
@@ -110,9 +110,9 @@ namespace WalloneInstaller.ViewModels
 
         private void OnContinueButtonCommandExecuted(object p)
         {
-            Process.Start("https://wallone.ru/?target=app&version="+ Application.ProductVersion +"&times=" + DateTime.Now.Ticks+"&language=" + Application.CurrentCulture.Name);
+            Process.Start("https://wallone.app/?target=app&version=" + Application.ProductVersion +"&times=" + DateTime.Now.Ticks+"&language=" + Application.CurrentCulture.Name);
             Process.Start(Path.Combine(UriService.GetPath(), "Wallone.UI.exe"));
-            App.Current.Shutdown(); 
+            App.Current.Shutdown();
         }
 
     }

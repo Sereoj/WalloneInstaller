@@ -28,7 +28,7 @@ namespace WalloneInstaller.Views
 
         private void LinkSite_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start("https://wallone.ru/?app=installer");
+            Process.Start("https://wallone.app/?app=installer");
         }
 
         private void LinkSite_MouseEnter(object sender, MouseEventArgs e)

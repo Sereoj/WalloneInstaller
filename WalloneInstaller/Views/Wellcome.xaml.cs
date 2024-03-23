@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WalloneInstaller.Services;
 
 namespace WalloneInstaller.Views
 {
@@ -28,7 +29,7 @@ namespace WalloneInstaller.Views
 
         private void Policy_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start("https://wallone.ru/policy");
+            Process.Start("https://wallone.app/policy");
         }
 
         private void LinkPolicy_MouseEnter(object sender, MouseEventArgs e)
@@ -43,7 +44,7 @@ namespace WalloneInstaller.Views
 
         private void LogoWallone_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start("https://wallone.ru/?app=installer");
+            Process.Start($"https://wallone.app/?app=installer");
         }
     }
 }

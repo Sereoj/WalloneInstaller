@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WalloneInstaller.Services;
 
 namespace WalloneInstaller.Views
 {
     /// <summary>
-    /// Логика взаимодействия для EmailSender.xaml
+    /// Логика взаимодействия для SocialsFooter.xaml
     /// </summary>
-    public partial class EmailSender : UserControl
+    public partial class SocialsFooter : UserControl
     {
-        public EmailSender()
+        public SocialsFooter()
         {
             InitializeComponent();
-        }
-        private void LogoWallone_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Process.Start("https://wallone.app/?app=installer");
         }
     }
 }

@@ -15,7 +15,7 @@ namespace WalloneInstaller.ViewModels
     {
         private readonly MainWindowVM _mainWindowVm;
 
-        private string path = @"AbsoluteGroup\Wallone";
+        private string path = @"OptGroup\Wallone";
         private string _text;
 
         public string Text
