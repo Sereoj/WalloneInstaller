@@ -13,6 +13,7 @@
                     <BulletDecorator Background="Transparent">
                         <BulletDecorator.Bullet>
                             <Border
+                                x:Name="Border"
                                 Width="18"
                                 Height="18"
                                 Background="#202020"
@@ -41,15 +42,15 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="CheckBoxMark" Property="Visibility" Value="Visible" />
-                            <Setter Property="BorderBrush" Value="#007AFF" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#007AFF" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="False">
                             <Setter TargetName="CheckBoxMark" Property="Visibility" Value="Hidden" />
-                            <Setter Property="BorderBrush" Value="#202020" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#202020" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="CheckBoxMark" Property="Visibility" Value="Hidden" />
-                            <Setter Property="BorderBrush" Value="#202020" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#202020" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

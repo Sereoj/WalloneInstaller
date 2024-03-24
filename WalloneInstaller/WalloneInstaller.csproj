@@ -104,6 +104,9 @@
     <Compile Include="Views\Installer.xaml.cs">
       <DependentUpon>Installer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LogoBox.xaml.cs">
+      <DependentUpon>LogoBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Partners.xaml.cs">
       <DependentUpon>Partners.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Installer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LogoBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

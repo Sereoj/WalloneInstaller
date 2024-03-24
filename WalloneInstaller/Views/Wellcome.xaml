@@ -35,31 +35,7 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid Margin="72,162,0,0">
-                <WrapPanel
-                    x:Name="LogoWallone"
-                    Width="140"
-                    Height="43"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Cursor="Hand"
-                    MouseDown="LogoWallone_MouseDown">
-                    <Image
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Source="/WalloneInstaller;component/Images/IconFull.png" />
-                    <StackPanel Margin="8,0,0,0">
-                        <TextBlock
-                            Style="{StaticResource TextBlockLogo}"
-                            Text="Wallone"
-                            TextWrapping="Wrap" />
-                        <TextBlock
-                            FontSize="16"
-                            FontWeight="Light"
-                            Style="{StaticResource TextBlockLogo}"
-                            Text="#Nice Day"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                </WrapPanel>
+                <local:LogoBox />
                 <Grid Margin="0,59,0,0">
                     <TextBlock
                         Width="322"

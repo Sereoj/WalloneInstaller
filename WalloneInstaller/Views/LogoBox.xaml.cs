@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,23 +16,13 @@ using System.Windows.Shapes;
 namespace WalloneInstaller.Views
 {
     /// <summary>
-    /// Логика взаимодействия для SocialsFooter.xaml
+    /// Логика взаимодействия для LogoBox.xaml
     /// </summary>
-    public partial class SocialsFooter : UserControl
+    public partial class LogoBox : UserControl
     {
-        public SocialsFooter()
+        public LogoBox()
         {
             InitializeComponent();
-        }
-
-        private void VKButton_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://vk.com/wallone");
-        }
-
-        private void TelegramButton_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://t.me/wallone");
         }
     }
 }

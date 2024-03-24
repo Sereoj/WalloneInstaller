@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="WalloneInstaller.Views.LogoBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WalloneInstaller.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="45"
+    mc:Ignorable="d">
+    <Grid>
+        <WrapPanel
+            x:Name="LogoWallone"
+            Height="43"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Cursor="Hand">
+            <Image
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Source="/WalloneInstaller;component/Images/IconFull.png" />
+            <StackPanel Margin="8,0,0,0">
+                <TextBlock
+                    Style="{StaticResource TextBlockLogo}"
+                    Text="Wallone"
+                    TextWrapping="Wrap" />
+                <WrapPanel>
+                    <TextBlock
+                        Margin="0,0,5,0"
+                        FontSize="16"
+                        FontWeight="Light"
+                        Foreground="#DDDDDD"
+                        Style="{StaticResource TextBlockLogo}"
+                        Text="#Мир исскутсва"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="12"
+                        Foreground="#DDDDDD"
+                        Text="&#xF354;" />
+                </WrapPanel>
+            </StackPanel>
+        </WrapPanel>
+    </Grid>
+</UserControl>
