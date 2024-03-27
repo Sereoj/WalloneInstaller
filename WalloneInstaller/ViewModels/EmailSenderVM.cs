@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Net.Mail;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Input;
 using WalloneInstaller.Commands;
@@ -12,6 +13,7 @@ namespace WalloneInstaller.ViewModels
     public class EmailSenserVM : ViewModel
     {
         private readonly MainWindowVM _mainWindowVm;
+        private Thread myThread;
 
         public EmailSenserVM()
         {
@@ -20,7 +22,6 @@ namespace WalloneInstaller.ViewModels
         public EmailSenserVM(MainWindowVM mainWindowVm)
         {
             _mainWindowVm = mainWindowVm;
-
         }
 
         private string email;
@@ -30,6 +31,16 @@ namespace WalloneInstaller.ViewModels
             set
             {
                 Set(ref email, value);
+            }
+        }
+
+        private double opacity;
+        public double Opacity
+        {
+            get => opacity;
+            set
+            {
+                Set(ref opacity, value);
             }
         }
 
@@ -60,7 +71,7 @@ namespace WalloneInstaller.ViewModels
 
         private void OnSubButtonCommandExecuted(object p)
         {
-
+            Opacity = 0;
             if (!string.IsNullOrEmpty(Email) && checkEmail(Email))
             {
                 var test = RequestRouter.EmailRequest(Email);
@@ -69,13 +80,19 @@ namespace WalloneInstaller.ViewModels
             }
             else
             {
-                MessageBox.Show("Укажите действующий реальный Email",
-                    "Wallone Installer",
-                    MessageBoxButtons.OK,
-                    icon: MessageBoxIcon.Warning);
+                myThread = new Thread(message);
+                myThread.Start();
             }
         }
-
+        private void message()
+        {
+            for (int i = 0; i <= 10; i++)
+            {
+                Opacity += 0.2;
+                Thread.Sleep(10);
+            }
+            myThread.Abort();
+        }
         private bool checkEmail(string email)
         {
             try
