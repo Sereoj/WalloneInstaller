@@ -25,15 +25,5 @@ namespace WalloneInstaller.Views
         {
             InitializeComponent();
         }
-
-        private void VKButton_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://vk.com/wallone");
-        }
-
-        private void TelegramButton_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://t.me/wallone");
-        }
     }
 }

@@ -195,4 +195,11 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="BaseBattonSocial" TargetType="Button" />
+
+    <Style
+        x:Key="ButtonSocialVK"
+        BasedOn="{StaticResource BaseBattonSocial}"
+        TargetType="Button" />
 </ResourceDictionary>

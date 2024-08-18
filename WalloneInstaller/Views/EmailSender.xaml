@@ -19,7 +19,7 @@
         <Grid x:Name="Left">
             <Image
                 x:Name="image1"
-                Source="/WalloneInstaller;component/Images/Image.png"
+                Source="/WalloneInstaller;component/Images/Image.jpg"
                 Stretch="UniformToFill" />
             <local:SocialsFooter
                 Width="40"

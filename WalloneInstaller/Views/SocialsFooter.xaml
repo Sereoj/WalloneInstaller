@@ -14,22 +14,13 @@
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button
+        <Image
             Grid.Column="0"
-            Background="{x:Null}"
-            BorderBrush="{x:Null}"
-            Click="VKButton_Click"
-            FocusVisualStyle="{x:Null}"
-            Style="{x:Null}">
-            <Image Cursor="Hand" Source="/Images/vk.png" />
-        </Button>
-        <Button
+            Cursor="Hand"
+            Source="/Images/vk.png" />
+        <Image
             Grid.Column="2"
-            Background="{x:Null}"
-            BorderBrush="{x:Null}"
-            Click="TelegramButton_Click"
-            FocusVisualStyle="{x:Null}">
-            <Image Cursor="Hand" Source="/Images/telegram.png" />
-        </Button>
+            Cursor="Hand"
+            Source="/Images/telegram.png" />
     </Grid>
 </UserControl>
